@@ -1,0 +1,133 @@
+=================================================================
+  SETUP EMAIL FORM TO SEND TO fusioncrafttech@gmail.com
+=================================================================
+
+CURRENT STATUS: ✅ Code is ready! You just need to add EmailJS credentials.
+
+============================================================================
+STEP-BY-STEP INSTRUCTIONS (Takes 5 minutes)
+============================================================================
+
+STEP 1: Create EmailJS Account
+--------------------------------
+1. Go to: https://www.emailjs.com/
+2. Click "Sign Up Free"
+3. Use your Gmail: fusioncrafttech@gmail.com
+4. Create password and verify email
+
+STEP 2: Connect Your Gmail
+----------------------------
+1. In EmailJS dashboard, go to "Email Services"
+2. Click "Add New Service"
+3. Select "Gmail"
+4. Click "Connect Account" and authorize access
+5. Copy the SERVICE ID (looks like: service_abc123)
+
+STEP 3: Create Email Template
+------------------------------
+1. Go to "Email Templates" in dashboard
+2. Click "Create New Template"
+3. Fill in:
+   - Template Name: "FusionCraft Contact"
+   - Subject: "New Contact: {{from_name}}"
+   - To Email: fusioncrafttech@gmail.com
+   - Content (copy this):
+
+Subject: New Contact: {{from_name}}
+
+Name: {{from_name}}
+Email: {{from_email}}
+Company: {{company}}
+Phone: {{phone}}
+
+Message:
+{{message}}
+
+---
+Sent from FusionCraft Tech website
+
+4. Click "Save"
+5. Copy the TEMPLATE ID (looks like: template_xyz789)
+
+STEP 4: Get Your Public Key
+-----------------------------
+1. Go to "Account" → "General"
+2. Find "API Keys" section
+3. Copy your PUBLIC KEY
+
+STEP 5: Add Credentials to Code
+---------------------------------
+Open this file: src/config/emailConfig.js
+
+Replace these 3 lines with your actual credentials:
+
+Current:
+const serviceId = 'service_xxxxxx'
+const templateId = 'template_xxxxxx'
+const publicKey = 'your_public_key'
+
+Your Version (example):
+const serviceId = 'service_abc123'     ← Your actual Service ID
+const templateId = 'template_xyz789'   ← Your actual Template ID
+const publicKey = 'abcdefghijklmnop'   ← Your actual Public Key
+
+============================================================================
+TEST THE FORM
+============================================================================
+
+1. Save the emailConfig.js file
+2. Run: npm run dev
+3. Open the Contact page in browser
+4. Fill out the form:
+   - Name: Test User
+   - Email: test@example.com
+   - Company: Test Company
+   - Phone: +91 9876543210
+   - Message: This is a test message
+5. Click "Send Message"
+6. Check your Gmail inbox: fusioncrafttech@gmail.com
+7. You should receive the email! ✨
+
+============================================================================
+WHAT YOU'LL RECEIVE IN EMAIL
+============================================================================
+
+Subject: New Contact: Test User
+
+Name: Test User
+Email: test@example.com
+Company: Test Company
+Phone: +91 9876543210
+
+Message:
+This is a test message
+
+---
+Sent from FusionCraft Tech website
+
+============================================================================
+TROUBLESHOOTING
+============================================================================
+
+Email not received?
+- Check spam/junk folder
+- Verify all 3 credentials are correct in emailConfig.js
+- Check EmailJS dashboard for error logs
+- Make sure Gmail connection is active (green checkmark)
+
+Getting error message?
+- Verify Service ID is correct
+- Verify Template ID is correct
+- Verify Public Key is correct
+- Check browser console (F12) for detailed errors
+
+Still not working?
+Email us at: fusioncrafttech@gmail.com
+
+============================================================================
+
+✅ That's it! Once you add the 3 credentials, emails will automatically 
+   be sent to fusioncrafttech@gmail.com whenever someone fills the form.
+
+============================================================================
+
