@@ -49,7 +49,7 @@
 
 .footer-heading {
   margin-bottom: 1rem;
-  color: #667eea;
+  color: var(--primary-color);
 }
 
 .footer-links {
@@ -68,7 +68,7 @@
 }
 
 .footer-links a:hover {
-  color: #667eea;
+  color: var(--primary-color);
 }
 
 .footer-bottom {

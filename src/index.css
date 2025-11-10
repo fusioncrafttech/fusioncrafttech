@@ -7,8 +7,9 @@
 }
 
 :root {
-  --primary-color: #667eea;
-  --secondary-color: #764ba2;
+  /* Brand palette aligned to logo blues */
+  --primary-color: #2563eb;
+  --secondary-color: #22c1ff;
   --text-color: #2c3e50;
   --text-light: #555;
   --bg-light: #f8f9fa;

@@ -1,112 +1,54 @@
 import './Services.css'
 import { useState } from 'react'
-
+import projectImgKraj from '../assets/krajandco web.png'
+import projectImgSpandana from '../assets/spandana web.png'
+import projectImgFoodDelivery from '../assets/fastfeast web.png'
 function Services() {
   const [activeFilter, setActiveFilter] = useState('all')
 
   const services = [
     {
       id: 1,
-      category: 'webapp',
-      title: 'E-Commerce Platform',
-      client: 'TechMart Inc',
+      category: 'web',
+      title: 'Fresh Organic Food Delivery Web Application',
+      client: 'K Raj & Co',
       description: 'Full-featured online shopping platform with payment integration',
-      technologies: ['React', 'Node.js', 'Stripe', 'MongoDB'],
-      image: '🛒',
+      technologies: ['React','Tailwindcss', 'Node.js', 'supabase', 'MySQL'],
+      image: projectImgKraj,
+      url: 'https://krajandco.com',
       status: 'Completed',
-      date: '2024'
+      date: '2025'
     },
+    
     {
       id: 2,
-      category: 'webapp',
-      title: 'Corporate Website',
-      client: 'Global Corp Ltd',
-      description: 'Modern, responsive website with CMS integration',
-      technologies: ['Next.js', 'Contentful', 'Tailwind CSS'],
-      image: '🏢',
-      status: 'Completed',
-      date: '2024'
+      category: 'web',
+      title: 'Food Delivery Web Application',
+      client: 'Demo By Fusioncraft Tech',
+      description: 'End-to-end food ordering platform with menu browsing, cart, checkout, and payments',
+      technologies: ['Reactjs','Nodejs','Javascript','supabase','Stripe'],
+      image: projectImgFoodDelivery,
+      url: 'https://demo.fusioncrafttech.com',
+      status: 'Inprogress',
+      date: '2025'
     },
+
     {
       id: 3,
-      category: 'webapp',
-      title: 'Mobile Web App',
-      client: 'StartupScale',
-      description: 'Cross-platform web application with mobile-first design',
-      technologies: ['React', 'PWA', 'Firebase'],
-      image: '📱',
+      category: 'web',
+      title: 'Healthcare Website Design',
+      client: 'Spandana Hospital',
+      description: "Clean, user-friendly healthcare website with optimized UI/UX",
+      technologies: ['Next.js', 'Tailwind CSS', 'Node.js', 'MongoDB'],
+      image: projectImgSpandana,
+      url: 'https://spandanahospital.org/',
       status: 'Completed',
-      date: '2024'
-    },
-    {
-      id: 4,
-      category: 'saas',
-      title: 'SaaS Dashboard Platform',
-      client: 'DataFlow Systems',
-      description: 'Cloud-based SaaS platform with subscription management',
-      technologies: ['AWS', 'Node.js', 'Stripe', 'PostgreSQL'],
-      image: '☁️',
-      status: 'Completed',
-      date: '2024'
-    },
-    {
-      id: 5,
-      category: 'saas',
-      title: 'Multi-tenant Platform',
-      client: 'InnovateLab',
-      description: 'Scalable SaaS solution for business management',
-      technologies: ['Next.js', 'Docker', 'Kubernetes', 'MongoDB'],
-      image: '💼',
-      status: 'In Progress',
-      date: '2024'
-    },
-    {
-      id: 6,
-      category: 'design',
-      title: 'UI/UX Design System',
-      client: 'DesignStudio',
-      description: 'Complete design system with component library',
-      technologies: ['Figma', 'Design Tokens', 'Storybook'],
-      image: '🎨',
-      status: 'Completed',
-      date: '2024'
-    },
-    {
-      id: 7,
-      category: 'design',
-      title: 'Brand Identity Design',
-      client: 'CreativeAgency',
-      description: 'Complete brand identity and UI design package',
-      technologies: ['Figma', 'Illustrator', 'Photoshop'],
-      image: '✨',
-      status: 'Completed',
-      date: '2023'
-    },
-    {
-      id: 8,
-      category: 'video',
-      title: 'Product Promotional Video',
-      client: 'ProductShowcase',
-      description: 'Professional promotional video with motion graphics',
-      technologies: ['Premiere Pro', 'After Effects', 'DaVinci'],
-      image: '🎥',
-      status: 'Completed',
-      date: '2024'
-    },
-    {
-      id: 9,
-      category: 'video',
-      title: 'Corporate Video Series',
-      client: 'Corporate Inc',
-      description: 'Series of corporate training and marketing videos',
-      technologies: ['Premiere Pro', 'Motion Graphics', 'Color Grading'],
-      image: '🎬',
-      status: 'In Progress',
       date: '2024'
     }
+   
   ]
 
-  const categories = ['all', 'webapp', 'saas', 'design', 'video']
+  const categories = ['all', 'web']
 
   const filteredServices = activeFilter === 'all' 
     ? services 
@@ -130,8 +72,8 @@ function Services() {
           <div className="services-grid">
             <div className="service-item">
               <div className="service-item-icon">🌐</div>
-              <h3>Web/App Development</h3>
-              <p>Responsive, modern websites that engage your audience and convert visitors into customers.</p>
+              <h3>Web Development</h3>
+              <p>Custom websites and web applications built with modern technologies</p>
               <ul>
                 <li>Responsive Design</li>
                 <li>E-Commerce Solutions</li>
@@ -140,20 +82,20 @@ function Services() {
               </ul>
             </div>
             <div className="service-item">
-              <div className="service-item-icon">💼</div>
-              <h3>SaaS Development</h3>
-              <p>Scalable cloud infrastructure that grows with your business needs.</p>
+              <div className="service-item-icon">📱</div>
+              <h3>Mobile Development</h3>
+              <p>Native and cross-platform mobile applications for iOS and Android</p>
               <ul>
-                <li>Cloud Architecture</li>
-                <li>Scalable Solutions</li>
-                <li>Subscription Management</li>
-                <li>Multi-tenant Systems</li>
+                <li>iOS & Android Apps</li>
+                <li>React Native</li>
+                <li>App Store Optimization</li>
+                <li>Push Notifications</li>
               </ul>
             </div>
             <div className="service-item">
               <div className="service-item-icon">🎨</div>
-              <h3>UI Design</h3>
-              <p>Beautiful, intuitive designs that make your product stand out from the competition.</p>
+              <h3>UI/UX Design</h3>
+              <p>Beautiful, intuitive designs that enhance user experience</p>
               <ul>
                 <li>User Research</li>
                 <li>Wireframing</li>
@@ -162,14 +104,14 @@ function Services() {
               </ul>
             </div>
             <div className="service-item">
-              <div className="service-item-icon">🎥</div>
-              <h3>Video Editing</h3>
-              <p>Professional video editing services to enhance your content.</p>
+              <div className="service-item-icon">☁️</div>
+              <h3>Cloud Solutions</h3>
+              <p>Scalable cloud infrastructure and DevOps services</p>
               <ul>
-                <li>Professional Editing</li>
-                <li>Motion Graphics</li>
-                <li>Color Correction</li>
-                <li>Content Enhancement</li>
+                <li>AWS & Azure</li>
+                <li>CI/CD Pipelines</li>
+                <li>Containerization</li>
+                <li>Serverless Architecture</li>
               </ul>
             </div>
           </div>
@@ -183,27 +125,26 @@ function Services() {
           <p className="section-subtitle">Showcasing our portfolio of successful implementations</p>
           
           <div className="filter-buttons">
-            {categories.map(category => {
-              const displayName = category === 'webapp' ? 'Web/App' : 
-                                 category === 'saas' ? 'SaaS' : 
-                                 category.charAt(0).toUpperCase() + category.slice(1)
-              return (
-                <button
-                  key={category}
-                  className={`filter-btn ${activeFilter === category ? 'active' : ''}`}
-                  onClick={() => setActiveFilter(category)}
-                >
-                  {displayName}
-                </button>
-              )
-            })}
+            {categories.map(category => (
+              <button
+                key={category}
+                className={`filter-btn ${activeFilter === category ? 'active' : ''}`}
+                onClick={() => setActiveFilter(category)}
+              >
+                {category.charAt(0).toUpperCase() + category.slice(1)}
+              </button>
+            ))}
           </div>
 
           <div className="projects-grid">
             {filteredServices.map(service => (
               <div key={service.id} className="project-card">
-                <div className="project-header">
-                  <div className="project-icon">{service.image}</div>
+                <div
+                  className="project-header project-media"
+                  style={{
+                    backgroundImage: service.image ? `url(${service.image})` : undefined
+                  }}
+                >
                   <div className="project-badge">{service.status}</div>
                 </div>
                 <div className="project-content">
@@ -217,6 +158,17 @@ function Services() {
                   </div>
                   <div className="project-footer">
                     <span className="project-date">{service.date}</span>
+                    {service.url && (
+                      <a
+                        href={service.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="project-visit-btn"
+                        aria-label={`Visit ${service.client} project`}
+                      >
+                        Visit
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>

@@ -3,7 +3,7 @@
 }
 
 .services-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
   color: white;
   padding: 4rem 2rem;
   text-align: center;
@@ -80,7 +80,7 @@
   content: '✓';
   position: absolute;
   left: 0;
-  color: #667eea;
+  color: var(--primary-color);
   font-weight: bold;
 }
 
@@ -112,9 +112,9 @@
 
 .filter-btn {
   padding: 0.75rem 2rem;
-  border: 2px solid #667eea;
+  border: 2px solid var(--primary-color);
   background: white;
-  color: #667eea;
+  color: var(--primary-color);
   border-radius: 25px;
   cursor: pointer;
   transition: all 0.3s;
@@ -122,12 +122,12 @@
 }
 
 .filter-btn:hover {
-  background: #667eea;
+  background: var(--primary-color);
   color: white;
 }
 
 .filter-btn.active {
-  background: #667eea;
+  background: var(--primary-color);
   color: white;
 }
 
@@ -151,11 +151,13 @@
 }
 
 .project-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 2rem;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  position: relative;
+  height: 180px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 1rem;
 }
 
 .project-icon {
@@ -163,12 +165,13 @@
 }
 
 .project-badge {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.45);
   padding: 0.5rem 1rem;
   border-radius: 20px;
-  color: white;
+  color: #fff;
   font-size: 0.875rem;
   font-weight: 600;
+  z-index: 2;
 }
 
 .project-content {
@@ -182,7 +185,7 @@
 }
 
 .project-client {
-  color: #667eea;
+  color: var(--primary-color);
   font-weight: 600;
   margin-bottom: 1rem;
   font-size: 0.9rem;
@@ -222,6 +225,24 @@
   font-size: 0.875rem;
 }
 
+/* Visit button */
+.project-visit-btn {
+  padding: 0.5rem 1.25rem;
+  border: 2px solid var(--primary-color);
+  background: white;
+  color: var(--primary-color);
+  border-radius: 25px;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+}
+
+.project-visit-btn:hover {
+  background: var(--primary-color);
+  color: #fff;
+}
+
 @media (max-width: 768px) {
   .page-title {
     font-size: 2rem;
@@ -237,6 +258,26 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Background media header for project card */
+.project-media {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* fallback gradient if no image is provided */
+  background-image: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+}
+
+/* subtle overlay for better text contrast if needed later */
+.project-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.35) 100%);
+  pointer-events: none;
+}
+
+
 
 
 

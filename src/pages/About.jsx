@@ -32,7 +32,7 @@ function About() {
             </div>
             <div className="content-image">
               <div className="image-placeholder">
-                <div className="placeholder-icon">🏢</div>
+                <img src="/Image.png" alt="About FusionCraftTech" className="about-image" />
               </div>
             </div>
           </div>

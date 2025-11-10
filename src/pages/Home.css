@@ -25,7 +25,7 @@
 .shape-1 {
   width: 400px;
   height: 400px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
   top: 10%;
   left: 5%;
   animation: float1 20s ease-in-out infinite;
@@ -34,7 +34,7 @@
 .shape-2 {
   width: 300px;
   height: 300px;
-  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
   top: 60%;
   right: 10%;
   animation: float2 25s ease-in-out infinite;
@@ -150,7 +150,7 @@
 
 .hero {
   padding: 4rem 2rem;
-  background: #0f0f1e;
+  background: #0b1220; /* Deep navy to match logo */
   color: white;
   display: flex;
   align-items: center;
@@ -162,27 +162,49 @@
   overflow: hidden;
 }
 
-.hero-animated-bg {
+.hero::before {
+  content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.8;
-  overflow: hidden;
+  top: -20%;
+  right: -10%;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle at 30% 30%, rgba(34, 193, 255, 0.15), transparent 60%),
+              radial-gradient(circle at 70% 70%, rgba(37, 99, 235, 0.18), transparent 55%);
+  filter: blur(10px);
+  z-index: 0;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 10% 90%, rgba(37, 99, 235, 0.07) 0%, transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(34, 193, 255, 0.06) 0%, transparent 35%),
+    repeating-linear-gradient(135deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 20px);
+  opacity: 0.9;
+  z-index: 0;
+}
+
+.hero-content,
+.hero-image {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-animated-bg {
+  display: none; /* remove colorful gradient blobs */
 }
 
 .gradient-mesh {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  animation: float-gradient 15s ease-in-out infinite;
+  display: none;
 }
 
 .gradient-1 {
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, #667eea 0%, rgba(102, 126, 234, 0.3) 70%, transparent 100%);
+  background: radial-gradient(circle, var(--primary-color) 0%, rgba(37, 99, 235, 0.3) 70%, transparent 100%);
   top: -100px;
   left: -100px;
   animation-delay: 0s;
@@ -191,7 +213,7 @@
 .gradient-2 {
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, #764ba2 0%, rgba(118, 75, 162, 0.3) 70%, transparent 100%);
+  background: radial-gradient(circle, var(--secondary-color) 0%, rgba(34, 193, 255, 0.3) 70%, transparent 100%);
   bottom: -50px;
   right: -50px;
   animation-delay: 5s;
@@ -221,13 +243,7 @@
 
 /* Particles Animation */
 .particles {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: 2;
+  display: none; /* remove particles for a cleaner, refined look */
 }
 
 .particle {
@@ -360,7 +376,7 @@
 
 .btn-primary {
   background: white;
-  color: #667eea;
+  color: var(--primary-color);
 }
 
 .btn-primary:hover {
@@ -376,17 +392,17 @@
 
 .btn-secondary:hover {
   background: white;
-  color: #667eea;
+  color: var(--primary-color);
 }
 
 .btn-outline {
   border: 2px solid #667eea;
-  color: #667eea;
+  color: var(--primary-color);
   background: transparent;
 }
 
 .btn-outline:hover {
-  background: #667eea;
+  background: var(--primary-color);
   color: white;
 }
 
@@ -498,7 +514,7 @@
 .stat-number {
   font-size: 3rem;
   font-weight: 700;
-  color: #667eea;
+  color: var(--primary-color);
   margin-bottom: 0.5rem;
 }
 

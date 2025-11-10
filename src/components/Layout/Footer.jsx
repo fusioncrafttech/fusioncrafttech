@@ -40,7 +40,7 @@ function Footer() {
           <div className="footer-section">
             <h4 className="footer-heading">Contact</h4>
             <ul className="footer-links">
-              <li>Email: info@fusioncraft.tech</li>
+              <li>Email: fusioncrafttech@gmail.com</li>
               <li>Phone: +91 9080326730</li>
               <li>Phone: +91 9360121830</li>
             </ul>

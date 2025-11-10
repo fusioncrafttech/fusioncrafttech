@@ -88,7 +88,7 @@ function Contact() {
                   <div className="info-icon">📧</div>
                   <div>
                     <h3>Email</h3>
-                    <p>info@fusioncraft.tech</p>
+                    <p>fusioncrafttech@gmail.com</p>
                   </div>
                 </div>
                 <div className="info-card">
@@ -111,10 +111,22 @@ function Contact() {
               <div className="social-links">
                 <h3>Follow Us</h3>
                 <div className="social-icons">
-                  <a href="#" className="social-icon">LinkedIn</a>
-                  <a href="#" className="social-icon">Twitter</a>
-                  <a href="#" className="social-icon">Facebook</a>
-                  <a href="#" className="social-icon">Instagram</a>
+                  <button
+                    type="button"
+                    className="social-icon"
+                    aria-label="Open LinkedIn"
+                    onClick={() => window.open('https://www.linkedin.com/company/fusioncrafttech/', '_blank', 'noopener,noreferrer')}
+                  >
+                    LinkedIn
+                  </button>
+                  <button
+                    type="button"
+                    className="social-icon"
+                    aria-label="Open Instagram"
+                    onClick={() => window.open('https://instagram.com', '_blank', 'noopener,noreferrer')}
+                  >
+                    Instagram
+                  </button>
                 </div>
               </div>
             </div>
@@ -141,7 +153,7 @@ function Contact() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      placeholder="John Doe"
+                      placeholder="Your Name"
                     />
                   </div>
                   <div className="form-group">
@@ -153,7 +165,7 @@ function Contact() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      placeholder="john@example.com"
+                      placeholder="yourmail@example.com"
                     />
                   </div>
                 </div>
