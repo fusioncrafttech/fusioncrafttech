@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import emailjs from '@emailjs/browser'
+import { useState, useEffect, useRef } from 'react'
 import { emailConfig } from '../config/emailConfig'
 import { useSEO } from '../hooks/useSEO'
 import './Contact.css'
@@ -16,7 +15,32 @@ function Contact() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
 
-  const siteUrl = import.meta.env.VITE_SITE_URL ?? 'https://www.fusioncrafttech.com'
+  const siteUrl = import.meta.env.VITE_SITE_URL ?? 'https://fusioncrafttech.vercel.app/'
+  const emailjsRef = useRef(null)
+
+  useEffect(() => {
+    // Init EmailJS when publicKey is available. Keep logs only while debugging.
+    // Dynamically import EmailJS only when publicKey is present.
+    // This prevents build/runtime errors when the dependency isn't installed
+    // and lets the app provide a graceful mailto fallback.
+    if (!emailConfig.publicKey) return
+
+    let mounted = true
+    import('@emailjs/browser')
+      .then((mod) => {
+        if (!mounted) return
+        const client = mod && (mod.default || mod)
+        emailjsRef.current = client
+        if (client && emailConfig.publicKey) client.init(emailConfig.publicKey)
+      })
+      .catch((err) => {
+        console.warn('EmailJS package not available (dynamic import failed):', err)
+      })
+
+    return () => {
+      mounted = false
+    }
+  }, [])
 
   useSEO({
     title: 'Contact Our Product Experts',
@@ -71,25 +95,82 @@ function Contact() {
       to_email: 'fusioncrafttech@gmail.com'
     }
 
+    // Basic validation for config (prevent sending when placeholders are present)
+   const isPlaceholderConfig =
+  !emailConfig.serviceId ||
+  !emailConfig.templateId ||
+  !emailConfig.publicKey ||
+  emailConfig.publicKey.length < 10
+
+
+    if (isPlaceholderConfig) {
+      console.warn('EmailJS credentials look like placeholders or are missing:', {
+        serviceId: emailConfig.serviceId,
+        templateId: emailConfig.templateId,
+        publicKey: emailConfig.publicKey && `${emailConfig.publicKey.slice(0, 6)}...`
+      })
+
+      // Provide a mailto fallback so users can still contact you when EmailJS isn't configured.
+      const subject = encodeURIComponent(`Website inquiry from ${formData.name || 'Website Visitor'}`)
+      const body = encodeURIComponent(
+        `Name: ${formData.name || ''}\nEmail: ${formData.email || ''}\nCompany: ${formData.company || ''}\nPhone: ${formData.phone || ''}\n\nMessage:\n${formData.message || ''}`
+      )
+      const mailto = `mailto:fusioncrafttech@gmail.com?subject=${subject}&body=${body}`
+      // set UI error and open the user's mail client
+      setError('Email service not configured. Opening your mail client as a fallback.')
+      window.location.href = mailto
+      setIsLoading(false)
+      return
+    }
+
     try {
-      await emailjs.send(
+      // Ensure we have the EmailJS client; import on-demand if necessary
+      let client = emailjsRef.current
+      if (!client) {
+        const mod = await import('@emailjs/browser').catch((err) => {
+          console.warn('EmailJS dynamic import failed at submit:', err)
+          throw err
+        })
+        client = mod && (mod.default || mod)
+        emailjsRef.current = client
+        if (client && emailConfig.publicKey) client.init(emailConfig.publicKey)
+      }
+
+      if (!client || typeof client.send !== 'function') {
+        throw new Error('EmailJS client not available')
+      }
+
+      const response = await client.send(
         emailConfig.serviceId,
         emailConfig.templateId,
         templateParams,
         emailConfig.publicKey
       )
-      setIsSubmitted(true)
-      setTimeout(() => setIsSubmitted(false), 5000)
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        phone: '',
-        message: ''
-      })
-    } catch (error) {
-      console.error('Failed to send email:', error)
-      setError('Failed to send message. Please add your EmailJS credentials in src/config/emailConfig.js or contact us at fusioncrafttech@gmail.com')
+
+      // EmailJS returns an object like { status: 200, text: 'OK' } on success
+      console.log('EmailJS response:', response)
+      const ok = response && (response.status === 200 || response.status === '200' || response.text === 'OK')
+
+      if (ok) {
+        setIsSubmitted(true)
+        setTimeout(() => setIsSubmitted(false), 5000)
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          phone: '',
+          message: ''
+        })
+      } else {
+        console.error('EmailJS did not return success:', response)
+        setError('Failed to send message. Email service returned an unexpected response. Check the browser console for details.')
+      }
+    } catch (err) {
+      // EmailJS may throw an EmailJSResponseStatus or another Error. Log all useful fields.
+      console.error('Failed to send email (caught):', err)
+      const status = err && (err.status || err.statusCode || err.status_id)
+      const text = err && (err.text || err.message || JSON.stringify(err))
+      setError(`Failed to send message. ${status ? `Status: ${status}. ` : ''}${text ? `${text}` : ''}`)
     } finally {
       setIsLoading(false)
     }
