@@ -9,7 +9,7 @@ function Footer() {
         <div className="footer-content">
           <div className="footer-section">
             <h3 className="footer-title">
-              <span className="logo-icon"><img src={logo} alt="FusionCraft Tech" /></span>
+              <span className="logo-icon"><img src={logo} alt="FusionCraft Tech" width="40" height="40" loading="lazy" decoding="async" /></span>
               FusionCraftTech
             </h3>
             <p className="footer-description">

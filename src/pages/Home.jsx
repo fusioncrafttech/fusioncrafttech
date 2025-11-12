@@ -16,23 +16,6 @@ function Home() {
       
       {/* Hero Section */}
       <section className="hero">
-        <div className="hero-animated-bg">
-          <div className="gradient-mesh gradient-1"></div>
-          <div className="gradient-mesh gradient-2"></div>
-          <div className="gradient-mesh gradient-3"></div>
-        </div>
-        <div className="particles">
-          <div className="particle"></div>
-          <div className="particle"></div>
-          <div className="particle"></div>
-          <div className="particle"></div>
-          <div className="particle"></div>
-          <div className="particle"></div>
-          <div className="particle"></div>
-          <div className="particle"></div>
-          <div className="particle"></div>
-          <div className="particle"></div>
-        </div>
         <div className="hero-content">
           <h1 className="hero-title">
             Welcome to <span className="highlight">FusionCraft Tech</span>
@@ -111,11 +94,11 @@ function Home() {
               <div className="stat-label">Happy Clients</div>
             </div>
             <div className="stat-item">
-              <div className="stat-number">4+</div>
+              <div className="stat-number">5+</div>
               <div className="stat-label">Projects Delivered</div>
             </div>
             <div className="stat-item">
-              <div className="stat-number">10+</div>
+              <div className="stat-number">1+</div>
               <div className="stat-label">Years Experience</div>
             </div>
             <div className="stat-item">

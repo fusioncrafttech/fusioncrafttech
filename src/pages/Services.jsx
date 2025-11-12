@@ -1,58 +1,103 @@
 import './Services.css'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
+import { useSEO } from '../hooks/useSEO'
 import projectImgKraj from '../assets/krajandco web.png'
 import projectImgSpandana from '../assets/spandana web.png'
 import projectImgFoodDelivery from '../assets/fastfeast web.png'
+
+const serviceProjects = Object.freeze([
+  {
+    id: 1,
+    category: 'web',
+    title: 'Fresh Organic Food Delivery Web Application',
+    client: 'K Raj & Co',
+    description: 'Full-featured online shopping platform with payment integration',
+    image: projectImgKraj,
+    url: 'https://krajandco.com',
+    status: 'Completed',
+    date: '2025'
+  },
+  {
+    id: 2,
+    category: 'web',
+    title: 'Food Delivery Web Application',
+    client: 'Demo By Fusioncraft Tech',
+    description:
+      'End-to-end food ordering platform with menu browsing, cart, checkout, and secure payments.',
+    image: projectImgFoodDelivery,
+    url: 'https://demo.fusioncrafttech.com',
+    status: 'In Progress',
+    date: '2025'
+  },
+  {
+    id: 3,
+    category: 'web',
+    title: 'Healthcare Website Design',
+    client: 'Spandana Hospital',
+    description: 'Patient-centric healthcare website with optimized UX and responsive design.',
+    image: projectImgSpandana,
+    url: 'https://spandanahospital.org/',
+    status: 'Completed',
+    date: '2024'
+  }
+])
+
+const categories = ['all', 'web']
+
 function Services() {
   const [activeFilter, setActiveFilter] = useState('all')
 
-  const services = [
-    {
-      id: 1,
-      category: 'web',
-      title: 'Fresh Organic Food Delivery Web Application',
-      client: 'K Raj & Co',
-      description: 'Full-featured online shopping platform with payment integration',
-      technologies: ['React','Tailwindcss', 'Node.js', 'supabase', 'MySQL'],
-      image: projectImgKraj,
-      url: 'https://krajandco.com',
-      status: 'Completed',
-      date: '2025'
-    },
-    
-    {
-      id: 2,
-      category: 'web',
-      title: 'Food Delivery Web Application',
-      client: 'Demo By Fusioncraft Tech',
-      description: 'End-to-end food ordering platform with menu browsing, cart, checkout, and payments',
-      technologies: ['Reactjs','Nodejs','Javascript','supabase','Stripe'],
-      image: projectImgFoodDelivery,
-      url: 'https://demo.fusioncrafttech.com',
-      status: 'Inprogress',
-      date: '2025'
-    },
+  const siteUrl = import.meta.env.VITE_SITE_URL ?? 'https://www.fusioncrafttech.com'
 
-    {
-      id: 3,
-      category: 'web',
-      title: 'Healthcare Website Design',
-      client: 'Spandana Hospital',
-      description: "Clean, user-friendly healthcare website with optimized UI/UX",
-      technologies: ['Next.js', 'Tailwind CSS', 'Node.js', 'MongoDB'],
-      image: projectImgSpandana,
-      url: 'https://spandanahospital.org/',
-      status: 'Completed',
-      date: '2024'
-    }
-   
-  ]
+  const structuredData = useMemo(
+    () => ({
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      provider: {
+        '@type': 'Organization',
+        name: 'FusionCraft Tech',
+        url: siteUrl
+      },
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'FusionCraft Tech Services',
+        itemListElement: serviceProjects.map((service, index) => ({
+          '@type': 'Offer',
+          position: index + 1,
+          itemOffered: {
+            '@type': 'Service',
+            name: service.title,
+            url: service.url ?? siteUrl,
+            description: service.description,
+            areaServed: {
+              '@type': 'Country',
+              name: 'India'
+            }
+          }
+        }))
+      }
+    }),
+    [siteUrl]
+  )
 
-  const categories = ['all', 'web']
+  useSEO({
+    title: 'Software Development & Creative Services',
+    description:
+      'Explore FusionCraft Tech\'s full-service capabilities, including web app development, mobile solutions, UI/UX design, branding, video editing, and digital marketing.',
+    keywords: [
+      'web development services',
+      'mobile app developers',
+      'UI UX design services',
+      'digital marketing agency',
+      'FusionCraft Tech portfolio'
+    ],
+    canonicalPath: '/services',
+    structuredData
+  })
 
-  const filteredServices = activeFilter === 'all' 
-    ? services 
-    : services.filter(service => service.category === activeFilter)
+  const filteredServices = activeFilter === 'all'
+    ? serviceProjects
+    : serviceProjects.filter(service => service.category === activeFilter)
 
   return (
     <div className="services-page">
@@ -104,14 +149,36 @@ function Services() {
               </ul>
             </div>
             <div className="service-item">
-              <div className="service-item-icon">☁️</div>
-              <h3>Cloud Solutions</h3>
-              <p>Scalable cloud infrastructure and DevOps services</p>
+              <div className="service-item-icon">🎬</div>
+              <h3>Video Editing</h3>
+              <p>Engaging video content crafted to tell your story and grow your audience</p>
               <ul>
-                <li>AWS & Azure</li>
-                <li>CI/CD Pipelines</li>
-                <li>Containerization</li>
-                <li>Serverless Architecture</li>
+                <li>Promo & Product Videos</li>
+                <li>Corporate Storytelling</li>
+                <li>Motion Graphics</li>
+                <li>Social Media Formats</li>
+              </ul>
+            </div>
+            <div className="service-item">
+              <div className="service-item-icon">🖼️</div>
+              <h3>Branding & Posters</h3>
+              <p>Eye-catching visuals that reinforce your brand across every touchpoint</p>
+              <ul>
+                <li>Brand Identity Kits</li>
+                <li>Marketing Collateral</li>
+                <li>Event Posters</li>
+                <li>Packaging Concepts</li>
+              </ul>
+            </div>
+            <div className="service-item">
+              <div className="service-item-icon">📣</div>
+              <h3>Digital Marketing</h3>
+              <p>Performance-driven campaigns designed to convert and retain customers</p>
+              <ul>
+                <li>Paid Media Management</li>
+                <li>SEO & Content Strategy</li>
+                <li>Marketing Automation</li>
+                <li>Analytics & Reporting</li>
               </ul>
             </div>
           </div>
@@ -128,8 +195,10 @@ function Services() {
             {categories.map(category => (
               <button
                 key={category}
+                type="button"
                 className={`filter-btn ${activeFilter === category ? 'active' : ''}`}
                 onClick={() => setActiveFilter(category)}
+                aria-pressed={activeFilter === category}
               >
                 {category.charAt(0).toUpperCase() + category.slice(1)}
               </button>
@@ -141,21 +210,33 @@ function Services() {
               <div key={service.id} className="project-card">
                 <div
                   className="project-header project-media"
-                  style={{
-                    backgroundImage: service.image ? `url(${service.image})` : undefined
-                  }}
                 >
+                  {service.image ? (
+                    <img
+                      src={service.image}
+                      alt={`${service.client} - ${service.title}`}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : (
+                    <div className="project-placeholder" aria-hidden="true"></div>
+                  )}
                   <div className="project-badge">{service.status}</div>
                 </div>
                 <div className="project-content">
                   <h3 className="project-title">{service.title}</h3>
                   <p className="project-client">Client: {service.client}</p>
                   <p className="project-description">{service.description}</p>
-                  <div className="project-technologies">
-                    {service.technologies.map((tech, idx) => (
-                      <span key={idx} className="tech-tag">{tech}</span>
-                    ))}
-                  </div>
+                  {service.technologies?.length > 0 && (
+                    <div className="project-technologies" aria-label="Technologies used">
+                      {service.technologies.map((tech) => (
+                        <span key={tech} className="tech-tag">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  
                   <div className="project-footer">
                     <span className="project-date">{service.date}</span>
                     {service.url && (

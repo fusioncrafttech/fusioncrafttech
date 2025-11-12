@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import emailjs from '@emailjs/browser'
 import { emailConfig } from '../config/emailConfig'
+import { useSEO } from '../hooks/useSEO'
 import './Contact.css'
 
 function Contact() {
@@ -14,6 +15,40 @@ function Contact() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
+
+  const siteUrl = import.meta.env.VITE_SITE_URL ?? 'https://www.fusioncrafttech.com'
+
+  useSEO({
+    title: 'Contact Our Product Experts',
+    description:
+      'Connect with FusionCraft Tech to discuss your software development, design, or digital marketing needs. Reach us via email, phone, or the project inquiry form.',
+    keywords: [
+      'contact FusionCraft Tech',
+      'start software project',
+      'request product consultation',
+      'digital agency contact details'
+    ],
+    canonicalPath: '/contact',
+    structuredData: {
+      '@context': 'https://schema.org',
+      '@type': 'ContactPage',
+      url: `${siteUrl}/contact`,
+      mainEntity: {
+        '@type': 'Organization',
+        name: 'FusionCraft Tech',
+        url: siteUrl,
+        contactPoint: [
+          {
+            '@type': 'ContactPoint',
+            contactType: 'sales',
+            email: 'fusioncrafttech@gmail.com',
+            telephone: '+91-9080326730',
+            availableLanguage: ['English', 'Tamil']
+          }
+        ]
+      }
+    }
+  })
 
   const handleChange = (e) => {
     setFormData({
@@ -111,22 +146,36 @@ function Contact() {
               <div className="social-links">
                 <h3>Follow Us</h3>
                 <div className="social-icons">
-                  <button
-                    type="button"
-                    className="social-icon"
+                  <a
+                    className="social-icon linkedin"
+                    href="https://www.linkedin.com/company/fusioncrafttech/"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label="Open LinkedIn"
-                    onClick={() => window.open('https://www.linkedin.com/company/fusioncrafttech/', '_blank', 'noopener,noreferrer')}
                   >
-                    LinkedIn
-                  </button>
-                  <button
-                    type="button"
-                    className="social-icon"
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        fill="currentColor"
+                        d="M22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0zM7.119 20.452H3.554V9h3.565v11.452zM5.337 7.433a2.068 2.068 0 1 1 0-4.137 2.068 2.068 0 0 1 0 4.137zM20.447 20.452h-3.554V14.83c0-1.341-.024-3.067-1.868-3.067-1.869 0-2.156 1.459-2.156 2.965v5.724H9.315V9h3.413v1.561h.049c.476-.9 1.637-1.848 3.369-1.848 3.602 0 4.268 2.372 4.268 5.455v6.284z"
+                      />
+                    </svg>
+                    <span className="sr-only">LinkedIn</span>
+                  </a>
+                  <a
+                    className="social-icon instagram"
+                    href="https://instagram.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label="Open Instagram"
-                    onClick={() => window.open('https://instagram.com', '_blank', 'noopener,noreferrer')}
                   >
-                    Instagram
-                  </button>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        fill="currentColor"
+                        d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5zm8.75 2a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5A3.5 3.5 0 1 0 12 15a3.5 3.5 0 0 0 0-7z"
+                      />
+                    </svg>
+                    <span className="sr-only">Instagram</span>
+                  </a>
                 </div>
               </div>
             </div>
@@ -134,12 +183,12 @@ function Contact() {
             <div className="contact-form-container">
               <form className="contact-form" onSubmit={handleSubmit}>
                 {isSubmitted && (
-                  <div className="success-message">
+                  <div className="success-message" role="status" aria-live="polite">
                     ✓ Thank you! We'll get back to you soon.
                   </div>
                 )}
                 {error && (
-                  <div className="error-message">
+                  <div className="error-message" role="alert">
                     {error}
                   </div>
                 )}
@@ -154,6 +203,7 @@ function Contact() {
                       onChange={handleChange}
                       required
                       placeholder="Your Name"
+                      autoComplete="name"
                     />
                   </div>
                   <div className="form-group">
@@ -166,6 +216,7 @@ function Contact() {
                       onChange={handleChange}
                       required
                       placeholder="yourmail@example.com"
+                      autoComplete="email"
                     />
                   </div>
                 </div>
@@ -179,6 +230,7 @@ function Contact() {
                       value={formData.company}
                       onChange={handleChange}
                       placeholder="Your Company"
+                      autoComplete="organization"
                     />
                   </div>
                   <div className="form-group">
@@ -190,6 +242,7 @@ function Contact() {
                       value={formData.phone}
                       onChange={handleChange}
                       placeholder="+91 9876543210"
+                      autoComplete="tel"
                     />
                   </div>
                 </div>
@@ -203,6 +256,7 @@ function Contact() {
                     required
                     rows="6"
                     placeholder="Tell us about your project..."
+                    maxLength={2000}
                   ></textarea>
                 </div>
                 <button type="submit" className="submit-btn" disabled={isLoading}>

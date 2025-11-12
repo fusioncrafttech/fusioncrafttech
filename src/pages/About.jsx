@@ -1,6 +1,41 @@
+import { Link } from 'react-router-dom'
+import { useSEO } from '../hooks/useSEO'
 import './About.css'
 
 function About() {
+  const siteUrl = import.meta.env.VITE_SITE_URL ?? 'https://www.fusioncrafttech.com'
+
+  useSEO({
+    title: 'About Our Digital Product Team',
+    description:
+      'Learn about FusionCraft Tech\'s mission, values, and experienced team delivering scalable software, cloud solutions, and design services for ambitious brands.',
+    keywords: [
+      'about FusionCraft Tech',
+      'technology consulting team',
+      'product engineering company',
+      'digital innovation partner'
+    ],
+    canonicalPath: '/about',
+    structuredData: {
+      '@context': 'https://schema.org',
+      '@type': 'AboutPage',
+      url: `${siteUrl}/about`,
+      mainEntity: {
+        '@type': 'Organization',
+        name: 'FusionCraft Tech',
+        url: siteUrl,
+        contactPoint: [
+          {
+            '@type': 'ContactPoint',
+            contactType: 'customer support',
+            email: 'fusioncrafttech@gmail.com',
+            telephone: '+91-9360121830'
+          }
+        ]
+      }
+    }
+  })
+
   return (
     <div className="about-page">
       {/* Header Section */}
@@ -32,7 +67,13 @@ function About() {
             </div>
             <div className="content-image">
               <div className="image-placeholder">
-                <img src="/Image.png" alt="About FusionCraftTech" className="about-image" />
+                <img
+                  src="/Image.png"
+                  alt="FusionCraft Tech team collaborating on product strategy"
+                  className="about-image"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
             </div>
           </div>
@@ -68,34 +109,25 @@ function About() {
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="team-section">
+      {/* Impact Section */}
+      <section className="impact-section">
         <div className="container">
-          <h2 className="section-title">Our Team</h2>
-          <div className="team-grid">
-            <div className="team-card">
-              <div className="team-avatar">👨‍💼</div>
-              <h3>Manojkumar B</h3>
-              <p className="team-role">Web Developer</p>
-              <p className="team-bio">Visionary leader with 2+ years in tech industry</p>
+          <h2 className="section-title">Driving Impact Together</h2>
+          <div className="impact-grid">
+            <div className="impact-card">
+              <div className="impact-icon">🚀</div>
+              <h3>Strategy to Scale</h3>
+              <p>We align technology roadmaps with business goals, ensuring every release moves key metrics forward.</p>
             </div>
-            <div className="team-card">
-              <div className="team-avatar">👨‍💼</div>
-              <h3>Rajesh S</h3>
-              <p className="team-role">Web Developer</p>
-              <p className="team-bio">Tech expert specializing in scalable architecture</p>
+            <div className="impact-card">
+              <div className="impact-icon">🔍</div>
+              <h3>Data-Backed Decisions</h3>
+              <p>Our cross-functional specialists analyze performance insights to fine-tune solutions in real time.</p>
             </div>
-            <div className="team-card">
-              <div className="team-avatar">👨‍💼</div>
-              <h3>Ajithkumar V</h3>
-              <p className="team-role">UI/UX Designer</p>
-              <p className="team-bio">Creative mind with award-winning designs</p>
-            </div>
-            <div className="team-card">
-              <div className="team-avatar">👨‍💼</div>
-              <h3>Prasanth A</h3>
-              <p className="team-role">UI/UX Designer</p>
-              <p className="team-bio">Ensuring smooth execution of every project</p>
+            <div className="impact-card">
+              <div className="impact-icon">🤝</div>
+              <h3>Collaborative Delivery</h3>
+              <p>Embedded squads work alongside your stakeholders, providing transparent communication at every step.</p>
             </div>
           </div>
         </div>
@@ -134,6 +166,11 @@ function About() {
                 <p>Round-the-clock support to keep your business running smoothly</p>
               </div>
             </div>
+          </div>
+          <div className="why-us-cta">
+            <Link to="/contact" className="btn btn-primary">
+              Contact Us
+            </Link>
           </div>
         </div>
       </section>

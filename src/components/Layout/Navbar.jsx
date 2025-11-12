@@ -13,7 +13,7 @@ function Navbar() {
     <nav className="navbar">
       <div className="nav-container">
         <Link to="/" className="nav-logo">
-          <span className="logo-icon"><img src={logo} alt="" /></span>
+          <span className="logo-icon"><img src={logo} alt="FusionCraft Tech" width="50" height="50" decoding="async" fetchpriority="high" /></span>
           FusionCraftTech
         </Link>
         

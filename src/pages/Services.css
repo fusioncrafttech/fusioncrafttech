@@ -143,6 +143,9 @@
   overflow: hidden;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .project-card:hover {
@@ -151,7 +154,6 @@
 }
 
 .project-header {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
   position: relative;
   height: 180px;
   display: flex;
@@ -160,8 +162,29 @@
   padding: 1rem;
 }
 
-.project-icon {
-  font-size: 3rem;
+.project-media {
+  position: relative;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  overflow: hidden;
+}
+
+.project-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.project-card:hover .project-media img {
+  transform: scale(1.05);
+}
+
+.project-placeholder {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
 }
 
 .project-badge {
@@ -176,6 +199,9 @@
 
 .project-content {
   padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .project-title {
@@ -214,15 +240,18 @@
 
 .project-footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
+  gap: 1rem;
   padding-top: 1rem;
   border-top: 1px solid #f0f0f0;
+  margin-top: auto;
 }
 
 .project-date {
   color: #999;
   font-size: 0.875rem;
+  text-align: right;
 }
 
 /* Visit button */
@@ -260,15 +289,6 @@
 }
 
 /* Background media header for project card */
-.project-media {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  /* fallback gradient if no image is provided */
-  background-image: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-}
-
-/* subtle overlay for better text contrast if needed later */
 .project-media::after {
   content: '';
   position: absolute;
