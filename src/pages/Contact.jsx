@@ -109,38 +109,13 @@ function Contact() {
         templateId: emailConfig.templateId,
         publicKey: emailConfig.publicKey && `${emailConfig.publicKey.slice(0, 6)}...`
       })
-
-      // Provide a mailto fallback so users can still contact you when EmailJS isn't configured.
-      const subject = encodeURIComponent(`Website inquiry from ${formData.name || 'Website Visitor'}`)
-      const body = encodeURIComponent(
-        `Name: ${formData.name || ''}\nEmail: ${formData.email || ''}\nCompany: ${formData.company || ''}\nPhone: ${formData.phone || ''}\n\nMessage:\n${formData.message || ''}`
-      )
-      const mailto = `mailto:fusioncrafttech@gmail.com?subject=${subject}&body=${body}`
-      // set UI error and open the user's mail client
-      setError('Email service not configured. Opening your mail client as a fallback.')
-      window.location.href = mailto
+      setError('Email service not configured. Add your EmailJS credentials to your environment (VITE_EMAILJS_*) or in src/config/emailConfig.js for local testing.')
       setIsLoading(false)
       return
     }
 
     try {
-      // Ensure we have the EmailJS client; import on-demand if necessary
-      let client = emailjsRef.current
-      if (!client) {
-        const mod = await import('@emailjs/browser').catch((err) => {
-          console.warn('EmailJS dynamic import failed at submit:', err)
-          throw err
-        })
-        client = mod && (mod.default || mod)
-        emailjsRef.current = client
-        if (client && emailConfig.publicKey) client.init(emailConfig.publicKey)
-      }
-
-      if (!client || typeof client.send !== 'function') {
-        throw new Error('EmailJS client not available')
-      }
-
-      const response = await client.send(
+      const response = await emailjs.send(
         emailConfig.serviceId,
         emailConfig.templateId,
         templateParams,

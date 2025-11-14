@@ -4,6 +4,18 @@ import { useSEO } from '../hooks/useSEO'
 import projectImgKraj from '../assets/krajandco web.png'
 import projectImgSpandana from '../assets/spandana web.png'
 import projectImgFoodDelivery from '../assets/fastfeast web.png'
+import projectImgThumbnail from '../assets/clients/Thumbnail image.jpg'
+import thumbnailoutput from '../assets/output/Thumbnail-design.jpg'
+import projectImgFlyer from '../assets/clients/Flyer design.jpg'
+import flyeroutput from '../assets/output/Flyer-design.jpg'
+import projectImgsocialmedia from '../assets/clients/Socialmedia Design.jpg'
+import socialmediaoutput from '../assets/output/Socialmedia design.jpg'
+import projectImgAdvertisement from '../assets/clients/Advertisement.jpg'
+import advertisementoutput from '../assets/output/Advertisement.jpg'
+
+
+
+
 
 const serviceProjects = Object.freeze([
   {
@@ -30,7 +42,51 @@ const serviceProjects = Object.freeze([
     date: '2025'
   },
   {
-    id: 3,
+     id: 3,
+    category: 'Design',
+    title: 'Thumbnail Design',
+    client: 'YouTube Channel - Tech Reviews',
+    description: 'Eye-catching thumbnail designs to boost video engagement and views.',
+    image: projectImgThumbnail,
+    url:thumbnailoutput,
+    status: 'Completed',
+    date: '2025'
+  },
+  {
+    id: 4,
+    category: 'Design',
+    title: 'Flyer Design',
+    client: 'Local Business Promotion',
+    description: 'Vibrant flyer designs to attract customers and promote events effectively.',
+    image: projectImgFlyer,
+    url:flyeroutput,
+    status: 'Completed',
+    date: '2025'
+  },
+  {
+    id: 5,
+    category: 'Design',
+    title: 'Social Media Graphics',
+    client: 'Social Media Campaigns',
+    description: 'Visually appealing graphics tailored for various social media platforms to enhance brand presence.',
+    image: projectImgsocialmedia,
+    url:socialmediaoutput,
+    status: 'Completed',
+    date: '2025'    
+  },{
+    id:6,
+    category: 'Design',
+    title: 'Advertisement Design',
+    client: 'Online and Print Ads',
+    description: 'Compelling advertisement designs to capture audience attention across digital and print media.',
+    image: projectImgAdvertisement,
+    url:advertisementoutput,
+    status: 'Completed',
+    date: '2025'
+
+  },
+  {
+    id:7,
     category: 'web',
     title: 'Healthcare Website Design',
     client: 'Spandana Hospital',
@@ -42,7 +98,7 @@ const serviceProjects = Object.freeze([
   }
 ])
 
-const categories = ['all', 'web']
+const categories = ['all', 'web','Design','UI/UX Design','Mobile App','Video Edit']
 
 function Services() {
   const [activeFilter, setActiveFilter] = useState('all')
