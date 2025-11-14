@@ -10,8 +10,8 @@ import projectImgFlyer from '../assets/clients/flyer-design.jpg'
 import flyeroutput from '../assets/output/flyer-designoutput.jpg'
 import projectImgsocialmedia from '../assets/clients/socialmedia-design.jpg'
 import socialmediaoutput from '../assets/output/socialmedia-designout.jpg'
-import projectImgAdvertisement from '../assets/clients/advertisementoutput.jpg'
-import advertisementoutput from '../assets/output/advertisement.jpg'
+import projectImgAdvertisement from '../assets/clients/advertisement.jpg'
+import advertisementoutput from '../assets/output/advertisement-output.jpg'
 
 
 
