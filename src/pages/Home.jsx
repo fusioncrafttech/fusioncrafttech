@@ -98,7 +98,7 @@ function Home() {
               <div className="stat-label">Projects Delivered</div>
             </div>
             <div className="stat-item">
-              <div className="stat-number">1+</div>
+              <div className="stat-number">3+</div>
               <div className="stat-label">Years Experience</div>
             </div>
             <div className="stat-item">
