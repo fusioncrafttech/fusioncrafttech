@@ -115,7 +115,11 @@ function Contact() {
     }
 
     try {
-      const response = await emailjs.send(
+      if (!emailjsRef.current) {
+        throw new Error('EmailJS is not initialized. Please ensure the @emailjs/browser package is installed and your configuration is correct.')
+      }
+
+      const response = await emailjsRef.current.send(
         emailConfig.serviceId,
         emailConfig.templateId,
         templateParams,
